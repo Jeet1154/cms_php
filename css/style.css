@@ -1,0 +1,62 @@
+/* google font */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+*{
+    margin: 0  ;
+    padding: 0 ;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+}
+:root{
+    --color1: #E7F2F8;
+    --color2: #74BDCB;
+    --color3: #FFA384;
+    --color4: #EFE7BC;
+}
+.bg1{
+    background-color: var(--color1);
+}
+.bg2{
+    background-color: var(--color2);
+}
+.bg3{
+    background-color: var(--color3);
+}
+.bg4{
+    background-color: var(--color4);
+}
+.color1{
+    color: var(--color1);
+}
+.color2{
+    color: var(--color2);
+}
+.color3{
+    color: var(--color3);
+}
+.color4{
+    color: var(--color4);
+}
+
+.txt1{
+    font-family: "Roboto Mono";
+}
+.fontsize1{
+    font-size: 12px;
+}
+.fontsize2{
+    font-size: 14px;
+}
+.herobtn{
+    background-color: var(--color2);
+    color: var(--color1);
+    padding: 7px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.2s ease-in-out;
+}
+.herobtn:hover{
+    color: var(--color2);
+    background-color: var(--color1);
+    padding: 10px;
+}
