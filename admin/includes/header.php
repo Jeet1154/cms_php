@@ -21,26 +21,26 @@
     <div class="container-fluid p-0 sticky-top">
         <nav class="navbar navbar-expand-lg bg1">
             <div class="container-fluid">
-                <a class="txt1 navbar-brand" href="#">Admin Name</a>
+                <a class="txt1 navbar-brand" href="dashboard.php">Admin Name</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item btn btn-info m-1">
-                            <a class="txt1 color nav-link " href="#">Posts</a>
+                        <li class="nav-item btn btn-sm btn-outline-info m-1">
+                            <a class="txt1 color nav-link " href="admin-posts.php">Posts</a>
                         </li>
-                        <li class="nav-item btn btn-primary m-1">
-                            <a class="txt1 color nav-link" href="#">Categories</a>
+                        <li class="nav-item btn btn-sm btn-outline-primary  m-1">
+                            <a class="txt1 color nav-link" href="post-category.php">Categories</a>
                         </li>
-                        <li class="nav-item btn btn-success m-1">
-                            <a class="txt1 color nav-link" href="#">Comments</a>
+                        <li class="nav-item btn btn-sm btn-outline-success m-1">
+                            <a class="txt1 color nav-link" href="comments.php">Comments</a>
                         </li>
-                        <li class="nav-item btn btn-danger m-1">
-                            <a class="txt1 color nav-link" href="#">Users</a>
+                        <li class="nav-item btn btn-sm btn-outline-danger m-1">
+                            <a class="txt1 color nav-link" href="users.php">Users</a>
                         </li>
-                        <li class="nav-item btn btn-warning m-1">
-                            <a class="txt1 color nav-link" href="#">Profile</a>
+                        <li class="nav-item btn btn-sm btn-outline-warning m-1">
+                            <a class="txt1 color nav-link" href="dashboard.php">Profile</a>
                         </li>
                     </ul>
                 </div>
