@@ -1,3 +1,79 @@
+<?php
+session_start();
+
+//class autoloading
+spl_autoload_register(function ($className) {
+    require "./admin/classes/$className.php";
+});
+
+// Process after submiting Register form
+if (isset($_POST['user_register'])) {
+
+    //store all form data in a php variable
+    $user_name = $_POST['user_name'];
+    $user_email = $_POST['user_email'];
+    $user_pass = $_POST['user_pass'];
+    $user_pic = $_FILES['user_pic']['name'];
+    $tmp_name = $_FILES['user_pic']['tmp_name'];
+
+    // Registration Form validation
+    if (empty($user_name)) {
+        echo "<script>alert('Enter User Name')</script>";
+    } elseif (empty($user_email)) {
+        echo "<script>alert('Enter User Email')</script>";
+    } elseif (empty($user_pass)) {
+        echo "<script>alert('Enter User Password')</script>";
+    } elseif (empty($_FILES['user_pic']['name'])) {
+        echo "<script>alert('Image is Required')</script>";
+    } else {
+        // Hash the password
+        $user_pass = password_hash($user_pass, PASSWORD_BCRYPT);
+
+        //making directory for image
+        $dir = "admin/assets/userImg";
+        if (!file_exists($dir)) {
+            mkdir($dir, 0777, true);
+        }
+        //user image absolute path
+        $targetPath = $dir . "/" . time() . "_" . $user_pic;
+
+        //Create object for Insert Class for Register User
+        $obj = new Insert();
+        $result = $obj->Registration([$user_name, $user_email, $targetPath, $user_pass]);
+
+        //If user Data upload at datavase the uload image to the directory
+        if ($result) {
+            move_uploaded_file($tmp_name, $targetPath);
+            echo "<script>alert('Registration Successfull...')</script>";
+            // header("location: http://localhost/academian/blogcms/cms_php/index.php");
+        } else {
+            echo "<script>alert('Registration Unsuccessfull Try again later...')</script>";
+        }
+    }
+}
+
+//Login Process
+if (isset($_POST['user_login'])) {
+    $user_email = $_POST['user_email'];
+    $user_pass = $_POST['user_pass'];
+    if (empty($user_email)) {
+        echo "<script>alert('Plaese Enter Email Id')</script>";
+    } elseif (empty($user_pass)) {
+        echo "<script>alert('Plaese Enter Password')</script>";
+    } else {
+        $obj = new Read();
+        $result = $obj->loginProcess($user_email, $user_pass);
+        if ($result == 0) {
+            echo "<script>alert('Plaese Enter Valid login Credential...')</script>";
+        }else {
+            echo "<script>alert('Correct Credential')</script>";
+            session_regenerate_id(true);
+            $_SESSION['user']['email'] = $user_email;
+            header("location: http://localhost/academian/blogcms/cms_php/admin/dashboard.php");
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

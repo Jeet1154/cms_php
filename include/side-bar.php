@@ -6,16 +6,17 @@
             <button class="btn btn-outline-info" type="submit"><i class="fa-solid fa-magnifying-glass fa-xl"></i></button>
         </form>
     </div>
+    <!-- login area -->
     <div class="row border-bottom pb-2">
         <h5 class="txt1 color2 mt-4">Log In</h5>
-        <form>
+        <form method="POST">
             <div class="mb-3">
-                <input type="email" class="form-control" placeholder="Enter Email">
+                <input type="email" class="form-control" name="user_email" id="user_email" placeholder="Enter Email">
             </div>
             <div class="mb-3">
-                <input type="password" class="form-control" placeholder="Enter Password">
+                <input type="password" class="form-control" name="user_pass" id="user_pass" placeholder="Enter Password">
             </div>
-            <button type="submit" class="btn btn-success d-block w-100">Login</button>
+            <button type="submit" class="btn btn-success d-block w-100" name="user_login" id="user_login">Login</button>
         </form>
     </div>
     <div class="row border-bottom pb-2">

@@ -6,6 +6,8 @@ require "./include/header.php";
     <div class="row justify-content-evenly">
       <?php
         require "./include/main-content.php";
+      ?>
+      <?php  
         require "./include/side-bar.php";
       ?>        
     </div>

@@ -1,3 +1,97 @@
+<?php
+$title = "Admin Panel";
+session_start();
+
+//for authentication
+if (!isset($_SESSION['user'])) {
+    header("location: http://localhost/academian/blogcms/cms_php/index.php");
+}
+
+//class autoloading
+spl_autoload_register(function ($className) {
+    require "./classes/$className.php";
+});
+
+//object of different Classes
+$insertObj = new Insert();
+$readObj = new Read();
+$updateObj = new Update();
+
+// access user data
+$userData = $readObj->readUserData($_SESSION['user']['email']);
+
+//access category data
+$categoryData = $readObj->readCategoryData();
+print_r($categoryData);
+
+//update User Process
+if (isset($_POST['user_update'])) {
+    $user_id = $userData['user_id'];
+    $update_user_name = $_POST['user_name'];
+    $update_user_email = $_POST['user_email'];
+    $update_user_old_pass = $_POST['user_old_pass'];
+    $update_user_new_pass = password_hash($_POST['user_new_pass'], PASSWORD_BCRYPT);
+    $update_user_pic = $_FILES['user_new_img']['name'];
+    $tmp_name = $_FILES['user_new_img']['tmp_name'];
+
+    if (empty($update_user_name)) {
+        echo "<script>alert('Enter User Name...');</script>";
+    } elseif (empty($update_user_email)) {
+        echo "<script>alert('Enter User Email...');</script>";
+    } elseif (empty($update_user_old_pass)) {
+        echo "<script>alert('Enter Old Password...');</script>";
+    } elseif (empty($update_user_new_pass)) {
+        echo "<script>alert('Enter Old Password...');</script>";
+    } elseif (empty($update_user_pic)) {
+        echo "<script>alert('Upload Use Image...');</script>";
+    } else {
+        if (!password_verify($update_user_old_pass, $userData['user_pass'])) {
+            echo "<script>alert('Password Not matching wrong password...');</script>";
+        } else {
+            $dir = "admin/assets/userImg";
+            if (!file_exists('../' . $dir)) {
+                mkdir($dir, 0777, true);
+            }
+            //user image absolute path
+            $targetPath = $dir . "/" . time() . "_" . $update_user_pic;
+
+            //Create object for Update Class for Update User
+            $result = $updateObj->updateUserData([$update_user_name, $update_user_email, $targetPath, $update_user_new_pass, $user_id]);
+            // If user Data upload at database the upload image to the directory
+            if ($result) {
+                unlink("../" . $userData['user_pic']);
+                move_uploaded_file($tmp_name, '../' . $targetPath);
+                echo "<script>
+                alert('Update Profile Successful, please login again...');
+                window.location.href = 'http://localhost/academian/blogcms/cms_php/admin/admin-logout.php';
+              </script>";
+                exit();
+            } else {
+                echo "<script>alert('Registration Unsuccessfull Try again later...')</script>";
+            }
+        }
+    }
+}
+
+//add category
+if (isset($_POST['add_category_btn'])) {
+    $category_title = $_POST['category_title'];
+    if (empty($category_title)) {
+        echo "<script>alert('Please Enter Category title...');</script>";
+    } else {
+        $result = $insertObj->addCategory($category_title);
+        if ($result) {
+            echo "<script>
+            alert('Category Added Successfully...');
+            window.location.href = 'http://localhost/academian/blogcms/cms_php/admin/post-category.php';
+            </script>";
+            exit();
+        } else {
+            echo "<script>alert('Something Went Wrong Category doesn't added Try again later...');</script>";
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
