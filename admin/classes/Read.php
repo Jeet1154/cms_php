@@ -45,6 +45,8 @@ class Read extends Config
             echo "<script>console.log(Error----- :" . $e->getMessage() . ")</script>";
         }
     }
+
+    //read all category data
     function readCategoryData()
     {
         try {
@@ -52,6 +54,23 @@ class Read extends Config
             $stmt = $this->conn->prepare($sql);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if ($result) {
+                return $result;
+            }
+        } catch (PDOException $e) {
+            echo "<script>console.log(Error----- :" . $e->getMessage() . ")</script>";
+        }
+    }
+
+    // get a specific category data
+    function getCategoryDetails($category_id)
+    {
+        try {
+            $sql = "SELECT * FROM category WHERE category_id = :category_id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':category_id',$category_id);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($result) {
                 return $result;
             }

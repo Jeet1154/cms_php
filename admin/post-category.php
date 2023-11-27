@@ -1,5 +1,5 @@
 <?php
-    require "./includes/header.php";
+require "./includes/header.php";
 ?>
 <div class="container">
     <div class="row">
@@ -17,25 +17,33 @@
                     <thead>
                         <tr>
                             <th>Sl no.</th>
-                            <th>CategoryIid</th>
-                            <th>Category Name</th>
+                            <th>Category Id</th>
+                            <th>Category Title</th>
                             <th>Created At</th>
                             <th>Updated At</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>101</td>
-                            <td>Lorem ipsum dolor sit amet.</td>
-                            <td>26-07-1999</td>
-                            <td>26-07-1999</td>
-                            <td>
-                                <button class="btn btn btn-outline-info"><i class="fa-solid fa-trash text-danger"></i></button>
-                                <button class="btn btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#editcategory"><i class="fa-solid fa-pen-to-square text-success"></i></button>
-                            </td>
-                        </tr>
+                        <?php
+                        $sl = 1;
+                        foreach ($categoryData as $value) {
+                        ?>
+                            <tr>
+                                <td><?= $sl ?></td>
+                                <td><?= $value['category_id'] ?></td>
+                                <td><?= $value['category_title'] ?></td>
+                                <td><?= $value['createdAt'] ?></td>
+                                <td><?= $value['updatedAt'] ?></td>
+                                <td>
+                                    <button class="btn btn btn-outline-info delete-category" data-cid="<?= $value['category_id'] ?>"><i class="fa-solid fa-trash text-danger"></i></button>
+                                    <button class="btn btn btn-outline-info update-category" data-bs-toggle="modal" data-bs-target="#editcategory" data-update_cid="<?= $value['category_id'] ?>"><i class="fa-solid fa-pen-to-square text-success"></i></button>
+                                </td>
+                            </tr>
+                        <?php
+                        }
+                        ?>
+
                     </tbody>
                 </table>
             </div>
@@ -66,22 +74,26 @@
 <div class="modal modal-lg" id="editcategory" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-        <div class="modal-header">
+            <div class="modal-header">
                 <h5 class="modal-title color4">Update Category</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Category ID</label>
+                        <input type="text" class="form-control" name="update_category_id" id="update_category_id" readonly>
+                    </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Enter Category Name</label>
-                        <input type="text" class="form-control" id="">
+                        <input type="text" class="form-control" name="update_category_title" id="update_category_title">
                     </div>
-                    <button type="submit" class="btn btn-outline-info">Update Category</button>
+                    <button type="submit" class="btn btn-outline-info" name="update_category" id="update_category">Update Category</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
 <?php
-    require "./includes/footer.php";
+require "./includes/footer.php";
 ?>

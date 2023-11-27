@@ -22,7 +22,6 @@ $userData = $readObj->readUserData($_SESSION['user']['email']);
 
 //access category data
 $categoryData = $readObj->readCategoryData();
-print_r($categoryData);
 
 //update User Process
 if (isset($_POST['user_update'])) {
@@ -89,6 +88,20 @@ if (isset($_POST['add_category_btn'])) {
         } else {
             echo "<script>alert('Something Went Wrong Category doesn't added Try again later...');</script>";
         }
+    }
+}
+
+// update category
+if (isset($_POST['update_category'])) {
+    $update_category_title = $_POST['update_category_title'];
+    $result = $updateObj->upsateCategory([$_POST['update_category_title'], $_POST['update_category_id']]);
+    if ($result) {
+        echo "<script>
+                alert('Update Category Successful');
+                window.location.href = 'http://localhost/academian/blogcms/cms_php/admin/post-category.php';
+              </script>";
+    } else {
+        echo "<script>alert('Update Category Unsuccessfull Try again later...')</script>";
     }
 }
 ?>
