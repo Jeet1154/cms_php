@@ -33,4 +33,19 @@ class Insert extends Config
             echo "<script>console.log(Error----- :".$e->getMessage().")</script>";
         }
     }
+
+    // add Posts
+    function addPost($data)
+    {
+        try {
+            $sql = "INSERT INTO posts (post_title,post_desc,post_img,post_status,category_id,user_id) VALUES (?,?,?,?,?,?)";
+            $stmt = $this->conn->prepare($sql);
+            $result = $stmt->execute($data);
+            if ($result) {
+                return $result;
+            }
+        } catch (PDOException $e) {
+            echo "<script>console.log(Error----- :".$e->getMessage().")</script>";
+        }
+    }
 }

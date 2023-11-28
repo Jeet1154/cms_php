@@ -1,5 +1,5 @@
 <?php
-    require "./includes/header.php";
+require "./includes/header.php";
 ?>
 <div class="container">
     <div class="row">
@@ -22,20 +22,29 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>101</td>
-                            <td>Jeet Sil</td>
-                            <td>jeetsil@gmail.com</td>
-                            <td><img src="https://www.thoughtco.com/thmb/094YF3bQBiuV_13n92GFQZWkM7k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/JavaScript-58acbb8a3df78c345bad32c2.jpg" alt="" class="w-40" height="50px" width="40px"></td>
-                            <td>26-07-1999</td>
-                            <td>26-07-1999</td>
-                            <!-- <td>
+                        <?php
+                        if ($allUserData != null) {
+                            $usl = 1;
+                            foreach ($allUserData as $value) {
+                        ?>
+                            <tr>
+                                <td><?= $usl ?></td>
+                                <td><?= $value['user_id']; ?></td>
+                                <td><?= $value['user_name']; ?></td>
+                                <td><?= $value['user_email']; ?></td>
+                                <td><img src="../<?= $value['user_pic']; ?>" alt="" class="w-40" height="50px" width="40px"></td>
+                                <td><?= $value['createdAt']; ?></td>
+                                <td><?= $value['updatedAt']; ?></td>
+                                <!-- <td>
                                 <button class="btn btn btn-outline-info"><i class="fa-solid fa-trash text-danger"></i></button>
                                 <button class="btn btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#editpost"><i class="fa-solid fa-pen-to-square text-success"></i></button>
                             </td> -->
-                        </tr>
-                        
+                            </tr>
+                        <?php
+                        }}
+                        ?>
+
+
                     </tbody>
                 </table>
             </div>
@@ -53,5 +62,5 @@
     </div>
 </div>
 <?php
-    require "./includes/footer.php";
+require "./includes/footer.php";
 ?>

@@ -28,91 +28,30 @@ require "./includes/header.php";
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>101</td>
-                            <td>Lorem ipsum dolor sit amet.</td>
-                            <td><img src="https://www.thoughtco.com/thmb/094YF3bQBiuV_13n92GFQZWkM7k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/JavaScript-58acbb8a3df78c345bad32c2.jpg" alt="" class="w-100" height="30px" width="50px"></td>
-                            <td>Technology</td>
-                            <td>Published</td>
-                            <td>26-07-1999</td>
-                            <td>26-07-1999</td>
-                            <td>
-                                <button class="btn btn btn-outline-info"><i class="fa-solid fa-trash text-danger"></i></button>
-                                <button class="btn btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#editpost"><i class="fa-solid fa-pen-to-square text-success"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>101</td>
-                            <td>Lorem ipsum dolor sit amet.</td>
-                            <td><img src="https://www.thoughtco.com/thmb/094YF3bQBiuV_13n92GFQZWkM7k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/JavaScript-58acbb8a3df78c345bad32c2.jpg" alt="" class="w-100" height="30px" width="50px"></td>
-                            <td>Technology</td>
-                            <td>Published</td>
-                            <td>26-07-1999</td>
-                            <td>26-07-1999</td>
-                            <td>
-                                <button class="btn btn btn-outline-info"><i class="fa-solid fa-trash text-danger"></i></button>
-                                <button class="btn btn btn-outline-info"><i class="fa-solid fa-pen-to-square text-success"></i></button>
-                            </td>
-                        </tr>
+                        <?php
+                        $psl = 1;
+                        if ($postsData != null) {
+                            foreach ($postsData as $value) {
+                        ?>
+                                <tr>
+                                    <td><?= $psl ?></td>
+                                    <td><?= $value['post_id']; ?></td>
+                                    <td><?= $value['post_title']; ?></td>
+                                    <td><img src="../<?= $value['post_img']; ?>" alt="" class="w-100" height="30px" width="50px"></td>
+                                    <td><?= $value['category_title']; ?></td>
+                                    <td><?= $value['post_status']; ?></td>
+                                    <td><?= $value['createdAt']; ?></td>
+                                    <td><?= $value['updatedAt']; ?></td>
+                                    <td class="d-flex">
+                                        <button class="btn btn btn-outline-info m-1 delete-post-btn" data-pid=<?= $value['post_id']; ?>><i class="fa-solid fa-trash text-danger"></i></button>
+                                        <button class="btn btn btn-outline-info m-1 edit-post-btn" data-bs-toggle="modal" data-bs-target="#editpost" data-pid="<?= $value['post_id']; ?>"><i class="fa-solid fa-pen-to-square text-success"></i></button>
+                                    </td>
+                                </tr>
+                        <?php
+                            }
+                        }
+                        ?>
 
-                        <tr>
-                            <td>1</td>
-                            <td>101</td>
-                            <td>Lorem ipsum dolor sit amet.</td>
-                            <td><img src="https://www.thoughtco.com/thmb/094YF3bQBiuV_13n92GFQZWkM7k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/JavaScript-58acbb8a3df78c345bad32c2.jpg" alt="" class="w-100" height="30px" width="50px"></td>
-                            <td>Technology</td>
-                            <td>Published</td>
-                            <td>26-07-1999</td>
-                            <td>26-07-1999</td>
-                            <td>
-                                <button class="btn btn btn-outline-info"><i class="fa-solid fa-trash text-danger"></i></button>
-                                <button class="btn btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#editpost"><i class="fa-solid fa-pen-to-square text-success"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>101</td>
-                            <td>Lorem ipsum dolor sit amet.</td>
-                            <td><img src="https://www.thoughtco.com/thmb/094YF3bQBiuV_13n92GFQZWkM7k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/JavaScript-58acbb8a3df78c345bad32c2.jpg" alt="" class="w-100" height="30px" width="50px"></td>
-                            <td>Technology</td>
-                            <td>Published</td>
-                            <td>26-07-1999</td>
-                            <td>26-07-1999</td>
-                            <td>
-                                <button class="btn btn btn-outline-info"><i class="fa-solid fa-trash text-danger"></i></button>
-                                <button class="btn btn btn-outline-info"><i class="fa-solid fa-pen-to-square text-success"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>101</td>
-                            <td>Lorem ipsum dolor sit amet.</td>
-                            <td><img src="https://www.thoughtco.com/thmb/094YF3bQBiuV_13n92GFQZWkM7k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/JavaScript-58acbb8a3df78c345bad32c2.jpg" alt="" class="w-100" height="30px" width="50px"></td>
-                            <td>Technology</td>
-                            <td>Published</td>
-                            <td>26-07-1999</td>
-                            <td>26-07-1999</td>
-                            <td>
-                                <button class="btn btn btn-outline-info"><i class="fa-solid fa-trash text-danger"></i></button>
-                                <button class="btn btn btn-outline-info"><i class="fa-solid fa-pen-to-square text-success"></i></button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>101</td>
-                            <td>Lorem ipsum dolor sit amet.</td>
-                            <td><img src="https://www.thoughtco.com/thmb/094YF3bQBiuV_13n92GFQZWkM7k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/JavaScript-58acbb8a3df78c345bad32c2.jpg" alt="" class="w-100" height="30px" width="50px"></td>
-                            <td>Technology</td>
-                            <td>Published</td>
-                            <td>26-07-1999</td>
-                            <td>26-07-1999</td>
-                            <td>
-                                <button class="btn btn btn-outline-info"><i class="fa-solid fa-trash text-danger"></i></button>
-                                <button class="btn btn btn-outline-info"><i class="fa-solid fa-pen-to-square text-success"></i></button>
-                            </td>
-                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -138,37 +77,41 @@ require "./includes/header.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="" class="form-label">Select Category</label>
-                        <select class="form-select">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="form-select" name="post_category" id="post_category">
+                            <option value="" selected>Open this select menu</option>
+                            <?php
+                            foreach ($categoryData as $value) {
+                            ?>
+                                <option value="<?= $value['category_id']; ?>"><?= $value['category_title']; ?></option>
+                            <?php
+                            }
+                            ?>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Enter Post Title</label>
-                        <input type="text" class="form-control" id="">
+                        <input type="text" class="form-control" name="post_title" id="post_title">
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Upload Picture</label>
-                        <input type="file" class="form-control" id="">
+                        <input type="file" class="form-control" name="post_img" id="post_img">
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Post Description</label>
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                        <textarea class="form-control" placeholder="Write Something..." name="post_descrption" id="post_descrption" style="height: 100px"></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Select Post Status</label>
-                        <select class="form-select">
-                            <option selected>Open this select menu</option>
+                        <select class="form-select" name="post_status" id="post_status">
+                            <option value="" selected>Open this select menu</option>
                             <option value="draft">Draft</option>
                             <option value="published">Published</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-outline-info">Add Post</button>
+                    <button type="submit" class="btn btn-outline-info" name="add_post" id="add_post">Add Post</button>
                 </form>
             </div>
         </div>
@@ -183,37 +126,37 @@ require "./includes/header.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form>
+                <form method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <label for="" class="form-label">Select Category</label>
-                        <select class="form-select">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <label for="" class="form-label">Post ID (Unchangable)</label>
+                        <input type="text" class="form-control" name="update_post_id" id="update_post_id" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="" class="form-label">Post Category (Unchangable)</label>
+                        <input type="text" class="form-control" name="update_post_category" id="update_post_category" readonly>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Enter Post Title</label>
-                        <input type="text" class="form-control" id="">
+                        <input type="text" class="form-control" name="update_post_title" id="update_post_title">
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Upload Picture</label>
-                        <input type="file" class="form-control" id="">
+                        <input type="file" class="form-control" name="update_post_img" id="update_post_img">
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Post Description</label>
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                        <textarea class="form-control" placeholder="Please write something..." style="height: 100px" name="update_post_desc" id="update_post_desc"></textarea>
                     </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Select Post Status</label>
-                        <select class="form-select">
+                        <select class="form-select" name="update_post_status" id="update_post_status">
                             <option selected>Open this select menu</option>
                             <option value="draft">Draft</option>
                             <option value="published">Published</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-outline-info">Add Post</button>
+                    <button type="submit" class="btn btn-outline-info" name="update_post_btn" id="update_post_btn">Update Post</button>
                 </form>
             </div>
         </div>

@@ -20,6 +20,12 @@ $updateObj = new Update();
 // access user data
 $userData = $readObj->readUserData($_SESSION['user']['email']);
 
+// access all user data
+$allUserData = $readObj->readAllUserData();
+
+//access posts data
+$postsData = $readObj->readPostsData($userData['user_id']);
+
 //access category data
 $categoryData = $readObj->readCategoryData();
 
@@ -94,7 +100,7 @@ if (isset($_POST['add_category_btn'])) {
 // update category
 if (isset($_POST['update_category'])) {
     $update_category_title = $_POST['update_category_title'];
-    $result = $updateObj->upsateCategory([$_POST['update_category_title'], $_POST['update_category_id']]);
+    $result = $updateObj->updateCategory([$_POST['update_category_title'], $_POST['update_category_id']]);
     if ($result) {
         echo "<script>
                 alert('Update Category Successful');
@@ -104,6 +110,106 @@ if (isset($_POST['update_category'])) {
         echo "<script>alert('Update Category Unsuccessfull Try again later...')</script>";
     }
 }
+
+// add post
+if (isset($_POST['add_post'])) {
+    //store all form data in a php variable
+    $post_category = $_POST['post_category'];
+    $post_title = $_POST['post_title'];
+    $post_descrption = $_POST['post_descrption'];
+    $post_img = $_FILES['post_img']['name'];
+    $tmp_name = $_FILES['post_img']['tmp_name'];
+    $post_status = $_POST['post_status'];
+
+    // Registration Form validation
+    if (empty($post_category)) {
+        echo "<script>alert('Select post category')</script>";
+    } elseif (empty($post_title)) {
+        echo "<script>alert('Enter post title')</script>";
+    } elseif (empty($post_descrption)) {
+        echo "<script>alert('Enter post description')</script>";
+    } elseif (empty($post_img)) {
+        echo "<script>alert('Post Image is Required')</script>";
+    } elseif (empty($post_status)) {
+        echo "<script>alert('Post status is Required')</script>";
+    } else {
+        //making directory for post image
+        $dir = "assets/postImg";
+        if (!file_exists($dir)) {
+            mkdir($dir, 0777, true);
+        }
+        //user image absolute path
+        $postImgPath = $dir . "/" . time() . "_" . $post_img;
+        $targetPath = "admin/$postImgPath";
+
+        //Create object for Insert Class for Register User
+        $obj = new Insert();
+        $result = $obj->addPost([$post_title, $post_descrption, $targetPath, $post_status, $post_category, $userData['user_id']]);
+
+        //If user Data upload at database then upload image to the directory
+        if ($result) {
+            move_uploaded_file($tmp_name, $postImgPath);
+            echo "<script>
+                alert('Post aded Successfull...');
+                window.location.href = 'http://localhost/academian/blogcms/cms_php/admin/admin-posts.php';
+            </script>";
+        } else {
+            echo "<script>alert('Post added Unsuccessfull Try again later...')</script>";
+        }
+    }
+}
+
+//update post
+if (isset($_POST['update_post_btn'])) {
+    $update_post_id = $_POST['update_post_id'];
+    $update_post_category = $_POST['update_post_category'];
+    $update_post_title = $_POST['update_post_title'];
+    $update_post_desc = $_POST['update_post_desc'];
+    $update_post_status = $_POST['update_post_status'];
+    $update_post_img = $_FILES['update_post_img']['name'];
+    $tmp_name = $_FILES['update_post_img']['tmp_name'];
+
+
+    if (empty($update_post_title)) {
+        echo "<script>alert('Please Enter Post Title...');</script>";
+    } elseif (empty($update_post_desc)) {
+        echo "<script>alert('Please Enter Post Description...');</script>";
+    } elseif (empty($update_post_status)) {
+        echo "<script>alert('Please Add Post Status...');</script>";
+    } elseif (empty($update_post_img)) {
+        echo "<script>alert('Upload Post Image...');</script>";
+    } else {
+        $dir = "assets/postImg";
+        if (!file_exists($dir)) {
+            mkdir($dir, 0777, true);
+        }
+        //user image absolute path
+        $postImgPath = $dir . "/" . time() . "_" . $update_post_img;
+        $targetPath = "admin/$postImgPath";
+
+        $deletePostImgPath = $readObj->postImgPath($update_post_id);
+
+        //Create object for Update Class for Update User
+        $result = $updateObj->updatePostData([$update_post_title, $update_post_desc, $targetPath, $update_post_status, $update_post_id]);
+
+        // If user Data upload at database the upload image to the directory
+        if ($result) {
+            unlink("../" . $deletePostImgPath['post_img']);
+            move_uploaded_file($tmp_name, $postImgPath);
+            echo "<script>
+                alert('Update Post Successful...');
+                window.location.href = 'http://localhost/academian/blogcms/cms_php/admin/admin-posts.php';
+              </script>";
+            exit();
+        } else {
+            echo "<script>alert('Post Update Unsuccessfull Try again later...')</script>";
+        }
+    }
+}
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

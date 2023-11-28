@@ -1,7 +1,7 @@
 <div class="main-content col-md-8 my-3 border border-start-0 border-top-0">
     <h3 class="txt1 color3 p-1">Recent Posts</h3>
     <div class="row p-1">
-        <div class="col-12 my-1 p-3 border-top shadow-sm">
+        <div class="col-12 my-2 p-3 shadow-lg">
             <h4 class="txt1 color2 m-0"> Lorem ipsum dolor sit amet consectetur. </h4>
             <p class="txt1 color2 m-0 fontsize2">By Jeet Sil</p>
             <p class="txt1 color2 m-0 fontsize1">26-07-1999</p>
@@ -11,7 +11,7 @@
             <p class="text-secondary fontsize1"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda et ipsum quidem tempore porro nesciunt deserunt libero, dolores illum soluta. Aperiam magni, magnam consequuntur recusandae iusto neque eius cumque illo. </p>
             <a href="post.php" class="herobtn bg2 border border-1">Read More</a>
         </div>
-        <div class="col-12 my-1 p-3 border-top shadow-sm">
+        <div class="col-12 my-2 p-3 shadow-lg">
             <h4 class="txt1 color2 m-0"> Lorem ipsum dolor sit amet consectetur. </h4>
             <p class="txt1 color2 m-0 fontsize2">By Jeet Sil</p>
             <p class="txt1 color2 m-0 fontsize1">26-07-1999</p>
@@ -21,7 +21,7 @@
             <p class="text-secondary fontsize1"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Assumenda et ipsum quidem tempore porro nesciunt deserunt libero, dolores illum soluta. Aperiam magni, magnam consequuntur recusandae iusto neque eius cumque illo. </p>
             <a href="post.php" class="herobtn bg2 border border-1">Read More</a>
         </div>
-        <div class="col-12 my-1 p-3 border-top shadow-sm">
+        <div class="col-12 my-2 p-3 shadow-lg">
             <h4 class="txt1 color2 m-0"> Lorem ipsum dolor sit amet consectetur. </h4>
             <p class="txt1 color2 m-0 fontsize2">By Jeet Sil</p>
             <p class="txt1 color2 m-0 fontsize1">26-07-1999</p>

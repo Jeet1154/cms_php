@@ -18,9 +18,26 @@
                 echo "<script>console.log(Error----- :".$e->getMessage().")</script>";
             }
         }
-        function upsateCategory($data){
+
+        //update category
+        function updateCategory($data){
             try {
                 $sql = "UPDATE category SET category_title = ?, updatedAt = NOW() WHERE category_id = ?";
+                $stmt = $this->conn->prepare($sql);
+                $result = $stmt->execute($data);
+                return $result;
+                // if ($result) {
+                //     return $result;
+                // }
+            } catch (PDOException $e) {
+                echo "<script>console.log(Error----- :".$e->getMessage().")</script>";
+            }
+        }
+
+        //update posts
+        function updatePostData($data){
+            try {
+                $sql = "UPDATE posts SET post_title = ?,post_desc = ?, post_img = ?, post_status = ?, updatedAt = NOW() WHERE post_id = ?";
                 $stmt = $this->conn->prepare($sql);
                 $result = $stmt->execute($data);
                 return $result;
