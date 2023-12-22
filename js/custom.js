@@ -1,3 +1,4 @@
+console.log("This project is not completed");
 //delete category
 $(".delete-category").on("click", function () {
   let data = $(this);
